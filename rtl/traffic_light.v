@@ -54,6 +54,26 @@ module traffic_light #(
         endcase
     end
 
-    //outputs  
-    always
+    //ons utputs  
+    always @(*) begin
+        case (state)
+            S_NS_GREEN:     next_state = S_NS_YELLOW;
+            S_NS_YELLOW:    next_state = S_EW_GREEN ;
+            S_EW_GREEN:     next_state = S_EW_YELLOW;
+            S_EW_YELLOW:    next_state = S_NS_GREEN ;
+            default:        next_state = S_NS_GREEN ;
+        endcase
+    end
+
+    //output logics moore based...
+    always @(*) begin
+        case (state)
+            S_NS_GREEN:     begin ns_light = GREEN;     ew_light = RED; end
+            S_NS_YELLOW:    begin ns_light = YELLOW;    ew_light = RED; end           
+            S_EW_GREEN:     begin ns_light = RED;       ew_light = GREEN; end 
+            S_EW_YELLOW:    begin ns_light = RED;       ew_light = YELLOW; end
+            default:        begin ns_light = RED;       ew_light = RED; end
+        endcase
+    end
+    
 
