@@ -3,9 +3,12 @@
 // two road traffic control system via moore fsm
 // ns: north-south, ew: east-west
 
-module traffic_light #(
+module traffic_light #
+(
     parameter GREEN_TICKS = 8, parameter YELLOW_TICKS = 3
-) (
+)
+
+(
     input wire clk;
     input wire rst;
     //lights
@@ -68,12 +71,11 @@ module traffic_light #(
     //output logics moore based...
     always @(*) begin
         case (state)
-            S_NS_GREEN:     begin ns_light = GREEN;     ew_light = RED; end
-            S_NS_YELLOW:    begin ns_light = YELLOW;    ew_light = RED; end           
-            S_EW_GREEN:     begin ns_light = RED;       ew_light = GREEN; end 
-            S_EW_YELLOW:    begin ns_light = RED;       ew_light = YELLOW; end
-            default:        begin ns_light = RED;       ew_light = RED; end
+            S_NS_GREEN:     begin ns_light = GREEN;     ew_light = RED;     end
+            S_NS_YELLOW:    begin ns_light = YELLOW;    ew_light = RED;     end           
+            S_EW_GREEN:     begin ns_light = RED;       ew_light = GREEN;   end 
+            S_EW_YELLOW:    begin ns_light = RED;       ew_light = YELLOW;  end
+            default:        begin ns_light = RED;       ew_light = RED;     end
         endcase
     end
-    
-
+endmodule
