@@ -1,4 +1,4 @@
-#traffic light controller (verilog fsm)
+# traffic light controller (verilog fsm)
 
 a two-road traffic light controlller written in verilog as a moore fsm, with a self-checking tester
 
