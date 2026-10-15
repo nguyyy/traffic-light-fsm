@@ -1,4 +1,4 @@
-`timescale 1ns/ps
+`timescale 1ns/1ps
 
 module traffic_light_tb;
 
@@ -33,7 +33,7 @@ module traffic_light_tb;
                     $display("failure t=%0t: ns%b ew=%b, expected ns=%b ew=%b", $time, ns, ew, exp_ns, exp_ew);
                     errors = errors + 1;
                 end
-                if(ns != RED && ew != RED)) begin
+                if(ns != RED && ew != RED) begin
                     $display("faliure t=%0t: both roads moving!", $time);
                     errors = errors + 1;
                 @(posedge clk); #1;

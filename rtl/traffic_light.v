@@ -1,4 +1,4 @@
-`timescale 1ns/ps
+`timescale 1ns/1ps
 
 // two road traffic control system via moore fsm
 // ns: north-south, ew: east-west
@@ -9,10 +9,10 @@ module traffic_light #
 )
 
 (
-    input wire clk;
-    input wire rst;
+    input wire clk,
+    input wire rst,
     //lights
-    output reg [1:0] ns_light;
+    output reg [1:0] ns_light,
     output reg [1:0] ew_light
 );
     //light coloring
@@ -47,17 +47,6 @@ module traffic_light #
     end
 
     //next state logic
-    always @(*) begin
-        case (state)
-            S_NS_GREEN:     next_state = S_NS_YELLOW;
-            S_NS_YELLOW:    next_state = S_EW_GREEN ;
-            S_EW_GREEN:     next_state = S_EW_YELLOW;
-            S_EW_YELLOW:    next_state = S_NS_GREEN ;
-            default:        next_state = S_NS_GREEN ;
-        endcase
-    end
-
-    //ons utputs  
     always @(*) begin
         case (state)
             S_NS_GREEN:     next_state = S_NS_YELLOW;
